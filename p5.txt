@@ -111,15 +111,23 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
     - No, ya que recibimos como respuesta un "407 Proxy Authentication Required".
 
  ** ¿En qué se diferencia el segundo INVITE más abajo del primero? ¿A qué crees que se debe esto?
-    - 
+    - Se diferencia en que en el segundo INVITE se añade el campo Proxy-Authorization.
 
 11. Una vez conectado, estudia el intercambio de tramas.
  ** ¿Qué protocolo(s) se utiliza(n)? ¿Para qué sirven estos protocolos?
- ** ¿Cuál es el tamaño de paquete de los mismos?
- ** ¿Se utilizan bits de padding?
- ** ¿Cuál es la periodicidad de los paquetes que se envían?
- ** ¿Cuántos bits/segundo estamos enviando?
+    - Se utilizan RTP, para la transmisión de multimedia a tiempo real, y H-261, codec para el vídeo recomendado por la ITU.
 
+ ** ¿Cuál es el tamaño de paquete de los mismos?
+    - El tamaño de los paquetes RTP es de 214 bytes (1712 bits) y el de los paquetes H.261 es variable.
+
+ ** ¿Se utilizan bits de padding?
+    - No. Lo observamos en el campo Padding del mensaje que es FALSE.
+
+ ** ¿Cuál es la periodicidad de los paquetes que se envían?
+    - Observamos el campo timestamp: 160.
+
+ ** ¿Cuántos bits/segundo estamos enviando?
+    - Enviamos 10700 bits/segundo.
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
