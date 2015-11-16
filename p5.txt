@@ -53,10 +53,10 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 6. A continuación, hay más de una docena de tramas TCP/HTTP.
  ** ¿Podrías decir la URL que se está pidiendo?
-    - Nos pide => http://ekiga.net/ip/
+    - Nos está pidiendo => http://ekiga.net/ip/
 
  ** ¿Qué user agent (UA) la está pidiendo?
-    - Nos pide => Ekiga.
+    - Nos la está pidiendo => Ekiga.
  
  ** ¿Qué devuelve el servidor?
     - Devuelve un "200 OK" con la IP 83.36.48.212
