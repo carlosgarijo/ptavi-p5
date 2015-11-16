@@ -124,46 +124,77 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
     - No. Lo observamos en el campo Padding del mensaje que es FALSE.
 
  ** ¿Cuál es la periodicidad de los paquetes que se envían?
-    - Observamos el campo timestamp: 160.
+    -La periodicidad es de 0.02 segundos aproximadamente.
 
  ** ¿Cuántos bits/segundo estamos enviando?
-    - Enviamos 10700 bits/segundo.
+    - Enviamos 8000 bits/segundo.
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una opción RTP. Empecemos mirando los flujos RTP.
  ** ¿Cuántos flujos hay? ¿por qué?
+    - En esta comunicación hay dos flujos, uno de audio y otro de vídeo.
+
  ** ¿Cuántos paquetes se pierden?
+    - No se pierde ningún paquete.
+
  ** ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta?
+    - En el flujo de vídeo es de 1290.48 ms y en el de audio es de 1290.44 ms. Este valor equivale al retardo o latencia de los paquetes.
+
  ** ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué quiere decir eso? ¿Estamos ante una conversación de calidad?
+    - En el flujo de vídeo el jitter medio es 153.24 ms y el máximo es 183.10 ms. En el flujo de audio el medio es 42.50 ms y el máximo es 119.64 ms. El jitter es el parámetro que determina la variación temporal que experimenta el retardo en una transmisión de paquetes entre los puntos inicial y final de la comunicación. Los valores de jitter tienen bastante variación por lo que el retardo es poco predecible y la conversación no será de gran calidad.
 
 
 13. Elige un paquete RTP de audio. Analiza el flujo de audio en Telephony -> RTP -> Stream Analysis.
  ** ¿Cuánto valen el delta y el jitter para el primer paquete que ha llegado?
+    - Ambos tienen valor 0.
+
  ** ¿Podemos saber si éste es el primer paquete que nos han enviado?
+    - Sí, ya que lo tomamos como referencia para empezar a contar el jitter y el delta.
+
  ** Los valores de jitter son menores de 10ms hasta un paquete dado. ¿Cuál?
+    - El 247.
+
  ** ¿A qué se debe el cambio tan brusco del jitter?
+    - Se debe al cambio brusco del retardo.
+
  ** ¿Es comparable este cambio con el tiempo desde la recepción del paquete anterior? ¿Por qué?
+    - Si, porque hay un cambio brusco en el aumento del retardo con respecto al paquete anterior.
+
  ** ¿Cuál es la dependencia entre el tiempo transcurrido desde el paquete anterior y el valor de jitter?
+    - La dependencia está en la variabilidad de dicho retardo. 
 
 
 14. En Telephony selecciona el menú VoIP calls. Verás que se lista la llamada de voz IP capturada en una ventana emergente. Selecciona esa llamada y pulsa el botón Graph.
  ** ¿Cuánto dura la conversación?
- ** ¿Cuáles son sus SSRC? ¿Por qué hay varios SSRCs? ¿Hay CSRCs?
+    - La conversacíon dura 24,803 segundos.
 
+ ** ¿Cuáles son sus SSRC? ¿Por qué hay varios SSRCs? ¿Hay CSRCs?
+    - Hay dos SSRC, una para cada flujo:
+        1. Flujo de vídeo (H.261): 0x43306582.
+        2. Flujo de audio (G.711): 0xBF4AFD37.
+    - No hay ningún CSRC, ya que el valor en su campo es 0.
 
 15. Identifica la trama donde se finaliza la conversación.
  ** ¿Qué método SIP se utiliza?
- ** ¿En qué trama(s)?
- ** ¿Por qué crees que se envía varias veces?
+    - Utiliza el método BYE.
 
+ ** ¿En qué trama(s)?
+    - En la 924, 925, 927 y 933
+
+ ** ¿Por qué crees que se envía varias veces?
+    - Porque estamos en UDP, y como sabemos que no es fiable, lo envía varias veces para asegurarse de que llega.
 
 16. Finalmente, se cierra la aplicación de VozIP.
  ** ¿Por qué aparece una instrucción SIP del tipo REGISTER?
- ** ¿En qué trama sucede esto?
- ** ¿En qué se diferencia con la instrucción que se utilizó con anterioridad (al principio de la sesión)?
+    - Aparece por que vamos a cerrar sesión con un Expires=0.
 
+ ** ¿En qué trama sucede esto?
+    - En la 950.
+
+ ** ¿En qué se diferencia con la instrucción que se utilizó con anterioridad (al principio de la sesión)?
+    - Se diferencia en el campo Expires, que en esta tiene valor 0 y en el otro 3600.
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
