@@ -208,7 +208,7 @@ Captura una sesión SIP de una conversación con el número SIP sip:9999@qxip.ne
 
 17. Observa las diferencias en el inicio de la conversación entre el entorno del laboratorio y el del ejercicio anterior:
  ** ¿Es necesario el uso de DNS y STUN? ¿Por qué?
-    - Si. 
+    - Si es necesario el uso de ambos. Esto es debido a que necesitamos DNS para la asignación de nombres de dominio a direcciones IP y STUN para encontrar nuestra dirección pública al estar bajo un router NAT.
 
  ** ¿Son diferentes el registro y la descripción de la sesión?
     - No, son iguales.
