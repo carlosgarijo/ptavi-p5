@@ -32,7 +32,7 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
  ** Filtra por sip para conocer cuándo se envían paquetes SIP. ¿En qué segundos tienen lugar esos envíos?
     - A los 7.343770 segundos encontramos el primer REGISTER, pero es respondido con un "401 Unauthorized". En el segundo 7.427990 enviamos el segundo REGISTER y en el 7.512211 recibimos el "200 OK". En el segundo 14.426793 enviamos un primer INVITE pero nos llega un "407 Proxy Authentication Required", pero en el segundo 16.233522 enviamos un segundo INVITE y recibimos un "200 OK". Los BYE los enviamos en el segundo 38 y 39 y el REGISTER con Expires: 0 lo enviamos en el segundo 55.694378.
  
-** Y los paquetes con RTP, ¿cuándo se envían?
+ ** Y los paquetes con RTP, ¿cuándo se envían?
     - Se envían mientras se está realizando la llamada.
 
 
